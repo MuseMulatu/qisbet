@@ -18,7 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        bagel: ['Bagel Fat One', 'cursive'],
+        display: ['Outfit', 'sans-serif'],
+        body: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "var(--border)",
