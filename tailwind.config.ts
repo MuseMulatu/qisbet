@@ -18,7 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        bagel: ['Bagel Fat One', 'cursive'],
+        display: ['Outfit', 'sans-serif'],
+        body: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "var(--border)",
@@ -48,6 +49,8 @@ export default {
           blue: "var(--accent-blue)",
           emerald: "var(--accent-emerald)",
           purple: "var(--accent-purple)",
+          amber: "var(--accent-amber)",
+          rose: "var(--accent-rose)",
         },
         popover: {
           DEFAULT: "var(--popover)",

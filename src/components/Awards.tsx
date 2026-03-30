@@ -1,119 +1,50 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import minimalBestFilm from '../assets/minimal-best-film.png'
-import minimalAudienceChoice from '../assets/minimal-audience-choice.png'
-import minimalInnovation from '../assets/minimal-innovation.png'
-import minimalDirectorsChoice from '../assets/minimal-directors-choice.png'
-import minimalExcellence from '../assets/minimal-excellence.png'
-import minimalRisingTalent from '../assets/minimal-rising-talent.png'
+import { motion } from 'framer-motion'
+import { Shield, Radio, BadgeCheck, Bot } from 'lucide-react'
 
 export function Awards() {
-  const awards = [
-    {
-      image: minimalBestFilm,
-      delay: "0s"
-    },
-    {
-      image: minimalAudienceChoice,
-      delay: "0.5s"
-    },
-    {
-      image: minimalInnovation,
-      delay: "1s"
-    },
-    {
-      image: minimalDirectorsChoice,
-      delay: "1.5s"
-    },
-    {
-      image: minimalExcellence,
-      delay: "2s"
-    },
-    {
-      image: minimalRisingTalent,
-      delay: "2.5s"
-    }
+  const badges = [
+    { icon: Shield, label: 'Invite Only', description: 'Curated community of real people', color: 'var(--accent-purple)' },
+    { icon: Radio, label: 'Live Tonight', description: 'Something is always happening', color: 'var(--accent-emerald)' },
+    { icon: BadgeCheck, label: 'Verified Community', description: 'Every voice is a real person', color: 'var(--accent-blue)' },
+    { icon: Bot, label: 'No Bots', description: 'Humans only. Always.', color: 'var(--accent-amber)' },
   ]
 
   return (
-    <section id="awards" className="relative py-20 bg-background overflow-hidden">
-      
-      {/* Elegant Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-      
+    <section className="relative py-24 bg-background overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
 
-
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        
-        {/* Header */}
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-3 h-3 bg-accent-purple rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-muted-foreground">
-              Recognition & Achievement
-            </span>
-            <div className="w-3 h-3 bg-accent-blue rounded-full animate-pulse" />
-          </div>
-          
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6 text-foreground">
-            Awards & Recognition
+          <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-4">The Vibe</p>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
+            Built different
           </h2>
-          
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Celebrated excellence in AI-powered film production
-          </p>
         </div>
 
-        {/* Awards Display */}
-        <div className="relative max-w-7xl mx-auto">
-          
-          {/* Awards Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {awards.map((award, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {badges.map((badge, i) => (
+            <motion.div
+              key={badge.label}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
+              className="p-6 rounded-2xl glass-effect text-center group hover:scale-[1.03] gentle-animation"
+            >
               <div
-                key={index}
-                className="group relative flex flex-col items-center text-center"
-                style={{ animationDelay: award.delay }}
+                className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+                style={{ backgroundColor: `color-mix(in srgb, ${badge.color} 12%, transparent)` }}
               >
-                
-                {/* Award Pedestal */}
-                <div className="relative mb-6">
-                  
-                  {/* Floating Award Display */}
-                  <div className={`relative p-6 rounded-2xl border shadow-md transition-all duration-500 hover:scale-105 ${
-                    index === 2 || index === 3 ? 'bg-gray-800 border-gray-700' : 'bg-background border-border'
-                  }`}
-                       style={{ 
-                         boxShadow: '0 8px 24px rgba(0,0,0,0.08)'
-                       }}>
-                    
-                    {/* Award Image */}
-                    <img 
-                      src={award.image}
-                      alt="Film Festival Award Laurel"
-                      className="w-full h-auto max-w-48 mx-auto"
-                      style={{
-                        filter: 'contrast(1.02) saturate(1.1)',
-                      }}
-                    />
-                    
-
-                  </div>
-                  
-                  {/* Floating Animation */}
-                  <div className="float-gentle absolute inset-0 pointer-events-none" />
-                </div>
-
+                <badge.icon className="w-5 h-5" style={{ color: badge.color }} />
               </div>
-            ))}
-          </div>
-
+              <h3 className="text-sm font-bold text-foreground mb-1">{badge.label}</h3>
+              <p className="text-xs text-muted-foreground">{badge.description}</p>
+            </motion.div>
+          ))}
         </div>
-
-
       </div>
-      
     </section>
   )
 }
